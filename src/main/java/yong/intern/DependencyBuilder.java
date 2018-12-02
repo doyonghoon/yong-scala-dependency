@@ -1,5 +1,8 @@
 package yong.intern;
 
+/**
+ * Figures out the offset of inserting text and also produces an inserting text.
+ */
 public class DependencyBuilder {
 
     private final String raw;
@@ -13,9 +16,14 @@ public class DependencyBuilder {
         build();
     }
 
+    /**
+     * Depending on the existing libraryDependencies, it follows the same structure so that will maintain the syntax valid.
+     *
+     * @return it returns nothing though, modifies the local variables; insertOffset and insertText.
+     */
     private void build() {
         StringBuilder builder = new StringBuilder();
-        int i = raw.indexOf("libraryDependencies");
+        int i = raw.lastIndexOf("libraryDependencies");
         if (i == -1) {
             if (raw.length() > 0) {
                 builder.append("\n\n");
@@ -32,7 +40,8 @@ public class DependencyBuilder {
             j = raw.length() - 1;
         }
 
-        if (raw.substring(i, j).contains("Seq")) {
+        String line = raw.substring(i, j);
+        if (line.contains("Seq")) {
             int k = j + 1;
             while (raw.charAt(k) == ' ' || raw.charAt(k) == '\t') {
                 // insert indentations.
@@ -55,7 +64,11 @@ public class DependencyBuilder {
             builder.append(",\n");
         } else {
             insertOffset = j;
-            builder.append(",\n");
+            if (!line.contains(",")) {
+                builder.append(",");
+            }
+
+            builder.append("\n");
             int k = i - 1;
             while (k >= 0 && raw.charAt(k) != '\n') {
                 builder.append(' ');

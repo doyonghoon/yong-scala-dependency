@@ -10,6 +10,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A helper class handling a http request to load dependencies.
+ * */
 public class DependencyRequest {
     public static List<String> requestDependency(String query) {
         List<String> res = new ArrayList<>();

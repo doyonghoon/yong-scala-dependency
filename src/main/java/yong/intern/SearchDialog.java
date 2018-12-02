@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Lets user search dependency and select from the list.
+ */
 public class SearchDialog extends DialogWrapper {
 
     private static final int TEXT_FIELD_COLUMNS = 50;
@@ -42,6 +45,11 @@ public class SearchDialog extends DialogWrapper {
         init();
     }
 
+    /**
+     * A helper function to get the selected item from the list.
+     *
+     * @return a selected dependency.
+     */
     public String getSelectedDependency() {
         int i = dependencyList.getSelectedIndex();
         if (i > -1) {
@@ -51,6 +59,9 @@ public class SearchDialog extends DialogWrapper {
         return "";
     }
 
+    /**
+     * A helper function to set up the search panel.
+     * */
     private JPanel createSearchPanel() {
         Dimension dim = new Dimension(MAX_WIDTH, 50);
         JPanel panel = new JPanel();
@@ -66,6 +77,9 @@ public class SearchDialog extends DialogWrapper {
         return panel;
     }
 
+    /**
+     * A helper function to bind a list of dependencies to the view.
+     * */
     private void bindData(List<String> list) {
         if (list == null) {
             return;

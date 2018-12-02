@@ -29,13 +29,22 @@ public class SearchBarAction extends AnAction {
         e.getPresentation().setEnabledAndVisible(getBuildSBTFile(e.getProject()) != null);
     }
 
+    /**
+     * Inserts the dependency into the build.sbt
+     */
     private void updateBuildBST(Project project, PsiFile file, String dependency) {
         if (project == null || file == null || dependency == null) {
             return;
         }
 
         Document doc = file.getViewProvider().getDocument();
-        DependencyBuilder builder = new DependencyBuilder(doc.getText(), dependency);
+        String raw = doc.getText();
+        if (raw.contains(dependency)) {
+            // ignores the duplicated dependency.
+            return;
+        }
+
+        DependencyBuilder builder = new DependencyBuilder(raw, dependency);
         WriteCommandAction.runWriteCommandAction(project, () -> doc.insertString(builder.getInsertOffset(), builder.getInsertText()));
     }
 
