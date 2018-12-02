@@ -1,0 +1,21 @@
+plugins {
+    id 'org.jetbrains.intellij' version '0.3.12'
+}
+
+group 'yong-intern'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+intellij {
+    version '2017.3.6'
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    compile 'com.mashape.unirest:unirest-java:1.4.9'
+}
