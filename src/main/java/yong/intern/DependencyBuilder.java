@@ -16,8 +16,22 @@ public class DependencyBuilder {
     private void build() {
         StringBuilder builder = new StringBuilder();
         int i = raw.indexOf("libraryDependencies");
+        if (i == -1) {
+            if (raw.length() > 0) {
+                builder.append("\n\n");
+            }
+
+            builder.append("libraryDependencies += ").append(dependency);
+            insertOffset = raw.isEmpty() ? 0 : raw.length();
+            insertText = builder.toString();
+            return;
+        }
+
         int j = raw.indexOf('\n', i);
-        insertOffset = j + 1;
+        if (j == -1) {
+            j = raw.length() - 1;
+        }
+
         if (raw.substring(i, j).contains("Seq")) {
             int k = j + 1;
             while (raw.charAt(k) == ' ' || raw.charAt(k) == '\t') {
@@ -37,6 +51,7 @@ public class DependencyBuilder {
                 }
             }
 
+            insertOffset = j + 1;
             builder.append(",\n");
         } else {
             insertOffset = j;
