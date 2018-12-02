@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DependencyRequest {
-    public static List<String> requestQuery(String query) {
+    public static List<String> requestDependency(String query) {
         List<String> res = new ArrayList<>();
         if (query.isEmpty()) {
             return res;

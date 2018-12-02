@@ -57,7 +57,7 @@ public class SearchDialog extends DialogWrapper {
         panel.setMaximumSize(new Dimension(MAX_WIDTH, 50));
         searchField = new JTextField(TEXT_FIELD_COLUMNS);
         searchButton = new JButton("search");
-        searchButton.addActionListener(e -> bindData(DependencyRequest.requestQuery(searchField.getText())));
+        searchButton.addActionListener(e -> bindData(DependencyRequest.requestDependency(searchField.getText())));
 
         panel.add(searchField);
         panel.add(searchButton);

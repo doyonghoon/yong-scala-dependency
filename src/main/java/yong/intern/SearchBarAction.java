@@ -2,6 +2,8 @@ package yong.intern;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.command.WriteCommandAction;
+import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.search.FilenameIndex;
@@ -14,9 +16,7 @@ public class SearchBarAction extends AnAction {
         SearchDialog dialog = new SearchDialog(project);
         dialog.show();
         if (dialog.isOK()) {
-            String dependency = dialog.getSelectedDependency();
-            System.out.println(dependency);
-            updateBuildBST(e.getProject(), getBuildSBTFile(e.getProject()), dependency);
+            updateBuildBST(e.getProject(), getBuildSBTFile(e.getProject()), dialog.getSelectedDependency());
         }
     }
 
@@ -30,7 +30,13 @@ public class SearchBarAction extends AnAction {
     }
 
     private void updateBuildBST(Project project, PsiFile file, String dependency) {
+        if (project == null || file == null || dependency == null) {
+            return;
+        }
 
+        Document doc = file.getViewProvider().getDocument();
+        DependencyBuilder builder = new DependencyBuilder(doc.getText(), dependency);
+        WriteCommandAction.runWriteCommandAction(project, () -> doc.insertString(builder.getInsertOffset(), builder.getInsertText()));
     }
 
     private PsiFile getBuildSBTFile(Project p) {
