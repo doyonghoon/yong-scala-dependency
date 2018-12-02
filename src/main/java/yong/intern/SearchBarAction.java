@@ -16,7 +16,7 @@ public class SearchBarAction extends AnAction {
         SearchDialog dialog = new SearchDialog(project);
         dialog.show();
         if (dialog.isOK()) {
-            updateBuildBST(e.getProject(), getBuildSBTFile(e.getProject()), dialog.getSelectedDependency());
+            updateBuildSBT(e.getProject(), getBuildSBTFile(e.getProject()), dialog.getSelectedDependency());
         }
     }
 
@@ -32,7 +32,7 @@ public class SearchBarAction extends AnAction {
     /**
      * Inserts the dependency into the build.sbt
      */
-    private void updateBuildBST(Project project, PsiFile file, String dependency) {
+    private void updateBuildSBT(Project project, PsiFile file, String dependency) {
         if (project == null || file == null || dependency == null) {
             return;
         }
