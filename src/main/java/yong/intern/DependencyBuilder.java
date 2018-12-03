@@ -29,7 +29,8 @@ public class DependencyBuilder {
                 builder.append("\n\n");
             }
 
-            builder.append("libraryDependencies += ").append(dependency);
+            builder.append("libraryDependencies += ");
+            generateDependencyFormat(builder, dependency.split("%"));
             insertOffset = raw.isEmpty() ? 0 : raw.length();
             insertText = builder.toString();
             return;
@@ -49,25 +50,12 @@ public class DependencyBuilder {
                 k++;
             }
 
-            String split[] = dependency.split("%");
-            for (int s = 0; s < split.length; s++) {
-                builder.append("\"");
-                builder.append(split[s].replaceAll("\\s", ""));
-                builder.append("\"");
-
-                if (s + 1 < split.length) {
-                    builder.append(" % ");
-                }
-            }
+            generateDependencyFormat(builder, dependency.split("%"));
 
             insertOffset = j + 1;
             builder.append(",\n");
         } else {
-            insertOffset = j;
-            if (!line.contains(",")) {
-                builder.append(",");
-            }
-
+            insertOffset = j + 1;
             builder.append("\n");
             int k = i - 1;
             while (k >= 0 && raw.charAt(k) != '\n') {
@@ -75,10 +63,23 @@ public class DependencyBuilder {
                 k--;
             }
 
-            builder.append("libraryDependencies += ").append(dependency);
+            builder.append("libraryDependencies += ");
+            generateDependencyFormat(builder, dependency.split("%"));
         }
 
         insertText = builder.toString();
+    }
+
+    private void generateDependencyFormat(StringBuilder builder, String[] split) {
+        for (int s = 0; s < split.length; s++) {
+            builder.append("\"");
+            builder.append(split[s].replaceAll("\\s", ""));
+            builder.append("\"");
+
+            if (s + 1 < split.length) {
+                builder.append(" % ");
+            }
+        }
     }
 
     public int getInsertOffset() {
