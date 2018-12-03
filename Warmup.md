@@ -58,7 +58,7 @@ f(x) = 2 * f(x - 1)
 Thus, now we know that `f(x) = 2^x`. The problem then reduces to solve the
 power x of 2. My high level strategy solving the problem is that it is similar
 to using two pointers in a number line going towards to the number multiple of 2
-in `ln(x)` iterations. The following is a complete working code in Scala.
+in `ln(n)` iterations. The following is a complete working code in Scala.
 
 ```scala
 def calculate(n: Int): Int = {
