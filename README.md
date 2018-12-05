@@ -7,12 +7,12 @@ It internally uses a maven search api to load a list of dependencies.
 
 ## Usage Example
 
-![ToolsMenu](https://github.com/doyonghoon/yong-scala-dependency/blob/master/toolmenu.png?raw=true)
+![ToolsMenu](https://github.com/doyonghoon/yong-scala-dependency/blob/not-google-searchable/toolmenu.png?raw=true)
 
 Make sure that you have `build.sbt` file in your current project. This plugin is only visible to the project including `build.sbt` file.
 
 
-![Dialog](https://github.com/doyonghoon/yong-scala-dependency/blob/master/dialog.png?raw=true)
+![Dialog](https://github.com/doyonghoon/yong-scala-dependency/blob/not-google-searchable/dialog.png?raw=true)
 
 You can search and select the dependency which you want to insert into your `build.sbt`
 
