@@ -16,6 +16,14 @@ public class DependencyBuilder {
         build();
     }
 
+    public int getInsertOffset() {
+        return insertOffset;
+    }
+
+    public String getInsertText() {
+        return insertText;
+    }
+
     /**
      * Depending on the existing libraryDependencies, it follows the same structure so that will maintain the syntax valid.
      *
@@ -70,6 +78,9 @@ public class DependencyBuilder {
         insertText = builder.toString();
     }
 
+    /**
+     * Generates the dependency following a valid syntanx: putting double-quotes to each part.
+     */
     private void generateDependencyFormat(StringBuilder builder, String[] split) {
         for (int s = 0; s < split.length; s++) {
             builder.append("\"");
@@ -80,13 +91,5 @@ public class DependencyBuilder {
                 builder.append(" % ");
             }
         }
-    }
-
-    public int getInsertOffset() {
-        return insertOffset;
-    }
-
-    public String getInsertText() {
-        return insertText;
     }
 }

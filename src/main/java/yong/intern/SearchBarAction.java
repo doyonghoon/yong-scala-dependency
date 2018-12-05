@@ -9,6 +9,9 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
 
+/**
+ * A menu item that is accessible by Tools Menu.
+ */
 public class SearchBarAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {

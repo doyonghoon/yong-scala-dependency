@@ -14,6 +14,7 @@ import java.util.List;
 public class SearchDialog extends DialogWrapper {
 
     private static final int TEXT_FIELD_COLUMNS = 50;
+    private static final int TEXT_FIELD_HEIGHT = 50;
     private static final int MAX_WIDTH = 550;
 
     private JPanel mainPanel;
@@ -61,9 +62,9 @@ public class SearchDialog extends DialogWrapper {
 
     /**
      * A helper function to set up the search panel.
-     * */
+     */
     private JPanel createSearchPanel() {
-        Dimension dim = new Dimension(MAX_WIDTH, 50);
+        Dimension dim = new Dimension(MAX_WIDTH, TEXT_FIELD_HEIGHT);
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setMinimumSize(dim);
@@ -79,7 +80,7 @@ public class SearchDialog extends DialogWrapper {
 
     /**
      * A helper function to bind a list of dependencies to the view.
-     * */
+     */
     private void bindData(List<String> list) {
         if (list == null) {
             return;
