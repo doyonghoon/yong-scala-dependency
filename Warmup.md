@@ -33,8 +33,10 @@ the following so that we can reduce the number of duplicated calculations
 return 2 * calculate(n - 1)
 ```
 
-However, this still takes an exponential time to complete the calculation so
-that it is not an asymptotic improvement of the running time complexity.
+~However, this still takes an exponential time to complete the calculation so
+that it is not an asymptotic improvement of the running time complexity.~
+
+This now takes `O(n)`.
 
 ### Solution 2
 
